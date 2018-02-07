@@ -18,12 +18,15 @@
 <body>
 <div id="app">
   <!--div v-for="card in cards"  v-bind:src="card.image" -->
-	<img v-for="(card, index) in cards" v-on:click="open(index, card.number)" v-bind:src="card.image">
+	<img v-for="(card, index) in cards" v-on:click.self="open(index, card.number)" v-bind:src="card.image">
   <!--/div-->
 
 </div>
 <div id="points">
   {{ points }}
+</div>
+<div id="finish">
+  <p v-if="show">finish</p>
 </div>
 
 

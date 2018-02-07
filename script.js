@@ -6,11 +6,16 @@ var app = new Vue({
   methods: {
   	open: function (index, num) {
   	  this.cards[index].image = images[num]; // открываем карту
-      if (openCards.length < 1) { 
+      if (openCards.length < 2) { 
         openCards.push(index);
         //console.log(openCards.length);
-      } else if (openCards.length == 1) {        
-        if (this.cards[openCards[0]].number == this.cards[index].number) {
+      } 
+      if (openCards.length == 2) {        
+        if (openCards[0] == openCards[1]) {
+          //console.log(openCards[0], openCards[1]);
+          openCards = [index];
+          console.log(openCards);
+        } else if (this.cards[openCards[0]].number == this.cards[index].number) {
           pointsUser.points = pointsUser.points + ( 42 * countCloseCard() );          
           setTimeout(removeCards, 800, openCards[0],index);
           openCards = [];
@@ -21,6 +26,9 @@ var app = new Vue({
           openCards = [];
         }
       }
+      if (countCloseCard()+2 == 0) {
+        finish.show = true;
+      }
   	}
   }
 });
@@ -28,6 +36,12 @@ var pointsUser = new Vue({
   el: '#points',
   data: {
     points: 0
+  }
+});
+var finish = new Vue({
+  el: '#finish',
+  data: {
+    show: false
   }
 });
 
@@ -80,7 +94,7 @@ function compareRandom() {
 
 rands.sort(compareRandom); // перемешиваем индексы карт
 for (z = 0; z < rands.length; z++) {
-  app.cards.push({ id: z, suit: suits[rands[z]], name: names[rands[z]], image: images[rands[z]], number: rands[z], open: 0 });
+  app.cards.push({ suit: suits[rands[z]], name: names[rands[z]], image: images[rands[z]], number: rands[z] });
 }
 
 function removeCards(index1, index2) {
@@ -107,7 +121,7 @@ function countCloseCard() {
   return f-2;
 }
 
-setTimeout(hidden, 2000);
+setTimeout(hidden, 5000);
 
 
 //app.cards.push({ suit: app2.allCards[rand].suit, number: app2.allCards[rand].number, name: app2.allCards[rand].name, image: app2.allCards[rand].image });
