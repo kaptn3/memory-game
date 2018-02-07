@@ -5,24 +5,20 @@ var app = new Vue({
   },
   methods: {
   	open: function (index, num) {
-      //alert(index);
-  	  //alert(this.cards[num]);
-      // число берёт из массива объектор cards, больше 18 не примет, вернёт undefined
   	  this.cards[index].image = images[num]; // открываем карту
       if (openCards.length < 1) { 
         openCards.push(index);
         //console.log(openCards.length);
       } else if (openCards.length == 1) {        
         if (this.cards[openCards[0]].number == this.cards[index].number) {
-          //alert('yes');
-          pointsUser.points = pointsUser.points + 42;          
+          pointsUser.points = pointsUser.points + ( 42 * countCloseCard() );          
           setTimeout(removeCards, 800, openCards[0],index);
           openCards = [];
           console.log(openCards.length);
-        } else {        
+        } else {     
+          pointsUser.points = pointsUser.points - ( 42 * ( 16 - countCloseCard() ) );    
           setTimeout(closeCard, 800, openCards[0], index);
           openCards = [];
-          console.log(openCards);
         }
       }
   	}
@@ -71,6 +67,7 @@ for (let i = 0; i < 13; i++) {
 
 // случайные 9 карт по паре в перемешку
 let rands = [];
+
 for (let l = 0; l < 9; l++) {
 	let rand = Math.floor(Math.random() * (52 - 1 + 1)) + 1;
   rands.push(rand);
@@ -98,6 +95,16 @@ function hidden() {
   for (let m = 0; m < app.cards.length; m++) {
     app.cards[m].image = imgCloseCard;    
   }
+}
+
+function countCloseCard() {
+  let f = 0;
+  for (let m = 0; m < app.cards.length; m++) {
+    if (app.cards[m].image) {
+      f++;
+    }    
+  }
+  return f-2;
 }
 
 setTimeout(hidden, 2000);
