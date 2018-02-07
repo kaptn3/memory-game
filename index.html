@@ -10,15 +10,15 @@
   		width: 100%;
   	}
   	img {
-
+      border: 1px solid #fff;
   		max-height: 100px;
   	}
   </style>
 </head>
 <body>
 <div id="app">
-  <!--div v-for="card in cards"-->
-	<img v-for="card in cards" v-bind:src="card.image" v-on:click="check(card.number)">
+  <!--div v-for="card in cards"  v-bind:src="card.image" -->
+	<img v-for="card in cards" v-on:click="open(card.id, card.number)" v-bind:src="card.image">
   <!--/div-->
 
 </div>

@@ -5,11 +5,13 @@ var app = new Vue({
     ]
   },
   methods: {
-  	check: function (num) {
+  	open: function (id, num) {
       //alert( typeof(num) );
       //alert(num);
-  	  alert(this.cards[num]);// число берёт из массива объектор cards, больше 18 не примет, вернёт undefined
-  	  //alert(this.cards[num].suit);
+  	  //alert(this.cards[num]);
+      // число берёт из массива объектор cards, больше 18 не примет, вернёт undefined
+  	  this.cards[id].image = images[num];
+      //alert(this.cards);
   	}
   }
 });
@@ -66,7 +68,7 @@ function compareRandom() {
 
 rands.sort(compareRandom); // перемешиваем индексы карт
 for (z = 0; z < rands.length; z++) {
-  app.cards.push({ suit: suits[rands[z]], name: names[rands[z]], image: images[rands[z]], number: rands[z] });
+  app.cards.push({ id: z, suit: suits[rands[z]], name: names[rands[z]], image: 'Cards/shirt.png', number: rands[z] });
 }
 
 //app.cards.push({ suit: app2.allCards[rand].suit, number: app2.allCards[rand].number, name: app2.allCards[rand].name, image: app2.allCards[rand].image });
