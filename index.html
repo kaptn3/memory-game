@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Game</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+  	#app {
+  		display: flex;
+  		flex-wrap: wrap;
+  		width: 100%;
+  	}
+  	img {
+
+  		max-height: 100px;
+  	}
+  </style>
+</head>
+<body>
+<div id="app">
+  <!--div id="img" v-on:click="check" v-for="card in cards"-->
+	<img v-for="card in cards" v-bind:src="card.image" v-on:click="check(card.number)">
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="script.js"></script>
+</body>
+</html>
