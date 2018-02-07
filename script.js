@@ -4,37 +4,26 @@ var app = new Vue({
     cards: []
   },
   methods: {
-  	open: function (index, num) {  	  
-      /*if (openCards.length < 2 && d < 2) {
-        for (var i = 0; i < this.cards.length; i++) {
-          if (this.cards[i].image !== imgCloseCard) {
-            d++;
-          }
-        } */
+  	open: function (index, num) { 
+    console.log(openCards); 
       if (openCards.length < 2) {  
-        console.log(openCards);
         this.cards[index].image = images[num]; // открываем карту
-        openCards.push(index);
-        //console.log(openCards.length);
-      } 
-      if (openCards.length == 2) {    
-        if (openCards[0] == openCards[1]) {
-          //console.log(openCards[0], openCards[1]);
-          openCards = [index];
-          console.log(openCards);
-        } else if (this.cards[openCards[0]].number == this.cards[index].number) {
-          pointsUser.points = pointsUser.points + ( 42 * countCloseCard() );          
-          setTimeout(removeCards, 800, openCards[0],index);
-          
-        } else {     
-          pointsUser.points = pointsUser.points - ( 42 * ( 16 - countCloseCard() ) );    
-          setTimeout(closeCard, 800, openCards[0], index);          
+        openCards.push(index);      
+        if (openCards.length == 2) {    
+          if (openCards[0] == openCards[1]) {
+            openCards = [index];
+          } else if (this.cards[openCards[0]].number == this.cards[index].number) {        
+            setTimeout(removeCards, 800, openCards[0],index);               
+            pointsUser.points = pointsUser.points + ( 42 * countCloseCard() );           
+          } else {   
+            setTimeout(closeCard, 800, openCards[0], index);  
+            pointsUser.points = pointsUser.points - ( 42 * ( 18 - countCloseCard() ) );         
+          }
         }
-      }
-      if (countCloseCard() == 0) {
-        finish.show = true;
-      }
-  	}
+  	  } else {
+        return false;
+      } 
+    } 
   }
 });
 var pointsUser = new Vue({
@@ -106,7 +95,11 @@ for (z = 0; z < rands.length; z++) {
 function removeCards(index1, index2) {
   app.cards[index1].image = '';
   app.cards[index2].image = '';
-  openCards = [];
+  openCards = [];  
+  console.log(countCloseCard());     
+  if (countCloseCard() == 0) {
+    finish.show = true;
+  }
 }
 function closeCard(index1, index2) {
   app.cards[index1].image = imgCloseCard;
@@ -126,7 +119,7 @@ function countCloseCard() {
       f++;
     }    
   }
-  return f-2;
+  return f;
 }
 
 setTimeout(hidden, 1000);

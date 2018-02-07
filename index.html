@@ -5,21 +5,27 @@
   <meta charset="utf-8">
   <style type="text/css">
   	#app {
+      margin: 0 auto;
   		display: flex;
   		flex-wrap: wrap;
-  		width: 100%;
+  		width: 600px;
   	}
   	img {
-      border: 1px solid #fff;
   		max-height: 100px;
   	}
+    div {
+      max-height: 100px;
+      width: 80px;
+      padding: 5px;
+    }
   </style>
 </head>
 <body>
 <div id="app">
   <!--div v-for="card in cards"  v-bind:src="card.image" -->
-	<img v-for="(card, index) in cards" v-on:click.self="open(index, card.number)" v-bind:src="card.image">
-  <!--/div-->
+  <div v-for="(card, index) in cards" class="card">
+	 <img v-on:click.self="open(index, card.number)" v-bind:src="card.image">
+  </div>
 
 </div>
 <div id="points">
