@@ -76,12 +76,25 @@ for (let i = 0; i < 13; i++) {
 
 // случайные 9 карт по паре в перемешку
 let rands = [];
-
-for (let l = 0; l < 9; l++) {
-	let rand = Math.floor(Math.random() * (52 - 1 + 1)) + 1;
-  rands.push(rand);
-  rands.push(rand);	
+while (rands.length < 9) {
+  let rand = Math.round( 0 - 0.5 + Math.random() * (51 - 0 + 1));
+  let found = false;
+  for (var i = 0; i < rands.length; i++) {
+    if (rands[i] === rand){ 
+     found = true;
+     break;
+    }
+  }
+  if (!found) { 
+    rands.push(rand); 
+  }
 }
+for (let i = 0; i < 9; i++) {
+  rands.push(rands[i]);
+}
+console.log(rands);
+
+// проверка на повторяющиеся карты
 
 function compareRandom() {
   return Math.random() - 0.5;
@@ -122,8 +135,4 @@ function countCloseCard() {
   return f;
 }
 
-setTimeout(hidden, 1000);
-
-
-//app.cards.push({ suit: app2.allCards[rand].suit, number: app2.allCards[rand].number, name: app2.allCards[rand].name, image: app2.allCards[rand].image });
-//app.cards.push({ suit: app2.allCards[rand].suit, number: app2.allCards[rand].number, name: app2.allCards[rand].name, image: app2.allCards[rand].image });
+setTimeout(hidden, 5000);
