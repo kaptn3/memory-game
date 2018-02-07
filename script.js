@@ -4,13 +4,20 @@ var app = new Vue({
     cards: []
   },
   methods: {
-  	open: function (index, num) {
-  	  this.cards[index].image = images[num]; // открываем карту
-      if (openCards.length < 2) { 
+  	open: function (index, num) {  	  
+      /*if (openCards.length < 2 && d < 2) {
+        for (var i = 0; i < this.cards.length; i++) {
+          if (this.cards[i].image !== imgCloseCard) {
+            d++;
+          }
+        } */
+      if (openCards.length < 2) {  
+        console.log(openCards);
+        this.cards[index].image = images[num]; // открываем карту
         openCards.push(index);
         //console.log(openCards.length);
       } 
-      if (openCards.length == 2) {        
+      if (openCards.length == 2) {    
         if (openCards[0] == openCards[1]) {
           //console.log(openCards[0], openCards[1]);
           openCards = [index];
@@ -18,15 +25,13 @@ var app = new Vue({
         } else if (this.cards[openCards[0]].number == this.cards[index].number) {
           pointsUser.points = pointsUser.points + ( 42 * countCloseCard() );          
           setTimeout(removeCards, 800, openCards[0],index);
-          openCards = [];
-          console.log(openCards.length);
+          
         } else {     
           pointsUser.points = pointsUser.points - ( 42 * ( 16 - countCloseCard() ) );    
-          setTimeout(closeCard, 800, openCards[0], index);
-          openCards = [];
+          setTimeout(closeCard, 800, openCards[0], index);          
         }
       }
-      if (countCloseCard()+2 == 0) {
+      if (countCloseCard() == 0) {
         finish.show = true;
       }
   	}
@@ -57,6 +62,7 @@ let allNames = ['2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K', 'A']
 const suits = [];
 const names = [];
 const images = [];
+let d = 0;
 const imgCloseCard = 'Cards/shirt.png';
 //const numbers = [];
 
@@ -100,10 +106,12 @@ for (z = 0; z < rands.length; z++) {
 function removeCards(index1, index2) {
   app.cards[index1].image = '';
   app.cards[index2].image = '';
+  openCards = [];
 }
 function closeCard(index1, index2) {
   app.cards[index1].image = imgCloseCard;
   app.cards[index2].image = imgCloseCard;
+  openCards = [];
 }
 function hidden() {
   for (let m = 0; m < app.cards.length; m++) {
@@ -121,7 +129,7 @@ function countCloseCard() {
   return f-2;
 }
 
-setTimeout(hidden, 5000);
+setTimeout(hidden, 1000);
 
 
 //app.cards.push({ suit: app2.allCards[rand].suit, number: app2.allCards[rand].number, name: app2.allCards[rand].name, image: app2.allCards[rand].image });
