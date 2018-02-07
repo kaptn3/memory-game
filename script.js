@@ -6,12 +6,26 @@ var app = new Vue({
   },
   methods: {
   	open: function (id, num) {
-      //alert( typeof(num) );
       //alert(num);
   	  //alert(this.cards[num]);
       // число берёт из массива объектор cards, больше 18 не примет, вернёт undefined
   	  this.cards[id].image = images[num];
-      //alert(this.cards);
+      let openCards = 0;
+      for (let p = 0; p < this.cards.length; p++) {
+        //alert(this.cards[p].image);
+        if (this.cards[p].image !== 'Cards/shirt.png') {
+          openCards++;
+        }
+      }
+      if (openCards == 1) {        
+        firstCard = this.cards[id].number;
+      } else if (openCards == 2) {
+        secCard = this.cards[id].number;
+        if (firstCard == secCard) {
+          
+        }
+      }
+      //alert(firstCard, secCard);
   	}
   }
 });
@@ -24,6 +38,9 @@ var app = new Vue({
 });*/
 
 // all data
+let firstCard = 0;
+let secCard = 0;
+let points = 0;
 let allSuits = ['H', 'D', 'S', 'C']; // 4
 let allNames = ['2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K', 'A']; // 13
 //let numb = 0;
