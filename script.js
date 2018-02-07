@@ -1,12 +1,7 @@
 var app = new Vue({
   el: '#app',
   data: {
-    cards: [
-      { id: 0, suit: 'J', name: 'names[0]', image: 'Cards/shirt.png', number: 0, open: 0 },
-      { id: 0, suit: 'suits[0]', name: 'names[0]', image: 'Cards/shirt.png', number: 0, open: 0 },
-      { id: 0, suit: 'J', name: 'names[0]', image: 'Cards/shirt.png', number: 2, open: 0 },
-      { id: 0, suit: 'suits[0]', name: 'names[0]', image: 'Cards/shirt.png', number: 2, open: 0 }
-    ]
+    cards: []
   },
   methods: {
   	open: function (index, num) {
@@ -21,44 +16,15 @@ var app = new Vue({
         if (this.cards[openCards[0]].number == this.cards[index].number) {
           //alert('yes');
           pointsUser.points = pointsUser.points + 42;          
-          removeCards(openCards[0],index);
+          setTimeout(removeCards, 800, openCards[0],index);
           openCards = [];
           console.log(openCards.length);
         } else {        
-          setTimeout(function(index1, index2) {
-            app.cards[index1].image = closeCard;
-            app.cards[index2].image = closeCard;
-          }, 3000, openCards[0], index);
+          setTimeout(closeCard, 800, openCards[0], index);
           openCards = [];
           console.log(openCards);
-
         }
       }
-      /*for (let p = 0; p < this.cards.length; p++) {
-        //alert(this.cards[p].image);
-        if (this.cards[p].image !== 'Cards/shirt.png') {
-          countOpenCards++;
-        }
-      }
-      if (countOpenCards == 1) {        
-        openCards[0] = this.cards[id].number;
-        openCardId[0] = id;
-      } else if (countOpenCards == 2) {
-        openCards[1] = this.cards[id].number;
-        openCardId[1] = id;
-        if (openCards[0] == openCards[1]) {
-          pointsUser.points = pointsUser.points + 42;
-          this.cards.splice(openCardId[0], 1);
-          this.cards.splice(openCardId[1], 1);
-        } else {
-          //this.cards[openCards[0]].image = 'Cards/shirt.png';
-          for (let p = 0; p < this.cards.length; p++) { 
-            this.cards[p].image = 'Cards/shirt.png';
-          }
-        }       
-        openCards = [0,0];
-      }
-      alert(firstCard, secCard);*/
   	}
   }
 });
@@ -81,7 +47,7 @@ let allNames = ['2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K', 'A']
 const suits = [];
 const names = [];
 const images = [];
-const closeCard = 'Cards/shirt.png';
+const imgCloseCard = 'Cards/shirt.png';
 //const numbers = [];
 
 for (let i = 0; i < 13; i++) {
@@ -117,17 +83,24 @@ function compareRandom() {
 
 rands.sort(compareRandom); // перемешиваем индексы карт
 for (z = 0; z < rands.length; z++) {
-  app.cards.push({ id: z, suit: suits[rands[z]], name: names[rands[z]], image: 'Cards/shirt.png', number: rands[z], open: 0 });
+  app.cards.push({ id: z, suit: suits[rands[z]], name: names[rands[z]], image: images[rands[z]], number: rands[z], open: 0 });
 }
 
 function removeCards(index1, index2) {
   app.cards[index1].image = '';
   app.cards[index2].image = '';
 }
-function closedCard(index1, index2) {
-  app.cards[index1].image = closeCard;
-  app.cards[index2].image = closeCard;
+function closeCard(index1, index2) {
+  app.cards[index1].image = imgCloseCard;
+  app.cards[index2].image = imgCloseCard;
 }
+function hidden() {
+  for (let m = 0; m < app.cards.length; m++) {
+    app.cards[m].image = imgCloseCard;    
+  }
+}
+
+setTimeout(hidden, 2000);
 
 
 //app.cards.push({ suit: app2.allCards[rand].suit, number: app2.allCards[rand].number, name: app2.allCards[rand].name, image: app2.allCards[rand].image });
