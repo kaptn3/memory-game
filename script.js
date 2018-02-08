@@ -52,22 +52,21 @@ var finish = new Vue({
 
 // all data
 let openCards = []; // индексы открытых карт
-let allSuits = ['H', 'D', 'S', 'C']; // 4
-let allNames = ['2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K', 'A']; // 13
-
-// array for all cards
-const suits = [];
-const names = [];
-const images = [];
+let suits = ['H', 'D', 'S', 'C']; // 4
+let names = ['2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K', 'A']; // 13
 const imgCloseCard = 'Cards/shirt.png'; // рубашка
+const allCards = [];
 
-// генерация всей колоды (52 карты)
-for (let i = 0; i < 13; i++) {
-	for (let k = 0; k < 4; k++) {
-    suits.push(allSuits[k]);
-    names.push(allNames[i]);
-    images.push('Cards/' + allNames[i] + allSuits[k] + '.png');
-	}	
+// генерация колоды
+function Card(numb) {
+  this.number = numb;
+  this.name = names[numb % 13];
+  this.suit = suits[parseInt(numb / 13)];
+  this.image = 'Cards/' + this.name + this.suit + '.png';
+}
+
+for (let i = 0; i < 52; i++) {
+  allCards.push(new Card(i));
 }
 
 // случайные 9 карт без повтора карты
