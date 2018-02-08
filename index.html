@@ -3,6 +3,7 @@
 <head>
   <title>Game</title>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="normalize.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -16,7 +17,7 @@
   <div v-if="show" id="app">
     <div class="menu">      
       <div class="anew">
-        <a href="#">Начать заново</a>
+        <a href="#" v-on:click="start.startGame">Начать заново</a>
       </div>
       <div class="points">
         Очки: {{ points }}
@@ -33,7 +34,7 @@
     <img src="Design/assets/Group 2@2x.png">
     <p>Поздравляем!<br>
     Ваш итоговый счёт: {{ app.points }} </p>
-    <button>Ещё раз</button>
+    <button v-on:click="start.startGame">Ещё раз</button>
   </div>
 </div>
 
