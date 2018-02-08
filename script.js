@@ -1,25 +1,10 @@
-var start = new Vue({
-  el: '#start',
-  data: {
-    show: true
-  },
-  methods: {
-    startGame: function () {
-      this.show = false;
-      app.show = true;     
-      play(); 
-      setTimeout(hidden, 5000);
-    }
-  }
-});
-
 var app = new Vue({
   el: '#app',
   data: {
     cards: [],
     points: 0,
-    show: false,
-    isNoClick: true 
+    show: 'start',
+    isNoClick: false
   },
   methods: {
   	open: function (index, num) {
@@ -42,22 +27,13 @@ var app = new Vue({
         return false;
       } 
     },
-    anew: function () {
-      play(); 
-      setTimeout(hidden, 5000);
-    }
-  }
-});
-var finish = new Vue({
-  el: '#finish',
-  data: {
-    show: false
-  },
-  methods: {
     startGame: function () {
-      this.show = false;
-      app.show = true;     
       play(); 
+      setTimeout(hidden, 5000);  
+    },
+    anew: function () {
+      this.show = 'none'; // плавное исчезновение
+      setTimeout(play, 300); // появление    
       setTimeout(hidden, 5000);
     }
   }
@@ -83,8 +59,10 @@ for (let i = 0; i < 52; i++) {
   deck.push(new Card(i));
 }
 
+// начало игры
 function play() {
-  // очистка
+  app.show = 'game'; // появление игры
+  // очистка данных, новая игра
   app.cards = [];
   app.points = 0;
   app.isNoClick = true // защита от клика при показе 
@@ -125,15 +103,15 @@ function play() {
     let number = rands[z];
     app.cards.push({ number: number, suit: suit, name: name, image: image, remove: false });
   }
-}
+} // конец функции
+
 function removeCards(index1, index2) {
   app.cards[index1].remove = true; // удаление карты
   app.cards[index2].remove = true;
   openCards = []; // очистка
   // проверка на финиш   
   if (countCloseCard() == 0) {
-    app.show = false;
-    finish.show = true;
+    app.show = 'finish';
   }
   console.log(countCloseCard());
 }
@@ -163,6 +141,4 @@ function countCloseCard() {
   }
   return (18 - count);
 }
-
-// todo не кликабельные при hidden
 
