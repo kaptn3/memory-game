@@ -14,17 +14,17 @@
     <h1>Memory Game</h1>
     <button v-on:click="startGame">Начать игру</button>
   </div>
-  <div v-if="show" id="app">
+  <div v-if="show" id="app" v-bind:class="{ wait: isNoClick }">
     <div class="menu">      
       <div class="anew">
-        <a href="#" v-on:click="start.startGame">Начать заново</a>
+        <a href="#" v-on:click.self="anew">Начать заново</a>
       </div>
       <div class="points">
         Очки: {{ points }}
       </div>
     </div>
     <div class="game">
-      <div v-for="(card, index) in cards" class="card">
+      <div v-for="(card, index) in cards" class="card" v-bind:class="{ removed: card.remove }">
     	 <img v-on:click.self="open(index, card.number)" v-bind:src="card.image">
       </div>
     </div>
@@ -34,7 +34,7 @@
     <img src="Design/assets/Group 2@2x.png">
     <p>Поздравляем!<br>
     Ваш итоговый счёт: {{ app.points }} </p>
-    <button v-on:click="start.startGame">Ещё раз</button>
+    <button v-on:click.self="startGame">Ещё раз</button>
   </div>
 </div>
 

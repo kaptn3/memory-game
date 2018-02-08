@@ -102,6 +102,9 @@ img {
   flex-wrap: wrap;
   width: 100%;
 }
+.wait {
+  z-index: -99;
+}
 .card {
   flex: 0 0 16.666667%;
   max-width: 16.666667%;
@@ -109,6 +112,10 @@ img {
   position: relative;
   width: 100%;
   min-height: 1px;
+}
+.removed {
+  opacity: 0;
+  z-index: -99;
 }
 .card img {
   width: 100%;
