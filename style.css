@@ -1,0 +1,130 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1b692d;
+  color: #fff;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  display: block;
+  padding: 5px;
+  color: #fff;
+}
+
+img {
+  border: 0;
+  vertical-align: middle;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 100%;
+  height: 100vh;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width:1200px){
+  .container { 
+    width:1170px
+  }
+}
+
+#start,
+.game,
+#finish,
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#start {
+  width: 100%;
+  height: 100vh;  
+  flex-direction: column;
+}
+
+#start img {
+  width: 50%;
+}
+
+#start h1,
+#finish p {
+  text-align: center;
+  font-size: 28px;
+  font-family: 'OpenSans-Bold' sans-serif;
+  letter-spacing: 0.2px;
+}
+
+#start button,
+#finish button {
+  height: 42px;
+  width: 144px;
+  opacity: 0.85;
+  background: #FFFFFF;
+  border-radius: 4px;
+  font-family: OpenSans-Bold;
+  font-size: 16px;
+  color: #1C7430;
+  letter-spacing: 0;
+  cursor: pointer;    
+  border: 1px solid transparent;
+}
+
+#app {  
+  max-width: 500px;
+}
+.menu {
+  display: flex;
+  justify-content: space-between;
+  opacity: 0.8;
+  font-family: OpenSans-Semibold;
+  font-size: 14px;
+  color: #FFFFFF;
+  letter-spacing: -0.25px;
+}
+.game {
+  flex-wrap: wrap;
+  width: 100%;
+}
+.card {
+  flex: 0 0 16.666667%;
+  max-width: 16.666667%;
+  padding: 5px;
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+}
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.points {
+  display: block;
+  padding: 5px;
+}
+
+#finish {
+  flex-direction: column;
+}
+
+#finish img {
+  width: 50%;
+
+}

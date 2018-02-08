@@ -1,7 +1,23 @@
+var start = new Vue({
+  el: '#start',
+  data: {
+    show: true
+  },
+  methods: {
+    startGame: function () {
+      this.show = false;
+      app.show = true;      
+      setTimeout(hidden, 5000);
+    }
+  }
+});
+
 var app = new Vue({
   el: '#app',
   data: {
-    cards: []
+    cards: [],
+    points: 0,
+    show: false
   },
   methods: {
   	open: function (index, num) { 
@@ -14,22 +30,16 @@ var app = new Vue({
             openCards = [index];
           } else if (this.cards[openCards[0]].number == this.cards[index].number) {        
             setTimeout(removeCards, 800, openCards[0],index);               
-            pointsUser.points = pointsUser.points + ( 42 * countCloseCard() );           
+            this.points = this.points + ( 42 * countCloseCard() );           
           } else {   
             setTimeout(closeCard, 800, openCards[0], index);  
-            pointsUser.points = pointsUser.points - ( 42 * ( 18 - countCloseCard() ) );         
+            this.points = this.points - ( 42 * ( 18 - countCloseCard() ) );         
           }
         }
   	  } else {
         return false;
       } 
     } 
-  }
-});
-var pointsUser = new Vue({
-  el: '#points',
-  data: {
-    points: 0
   }
 });
 var finish = new Vue({
@@ -63,16 +73,6 @@ for (let i = 0; i < 13; i++) {
 		//app2.allCards.push({ suit: suits[k], number: numbers, name: names[i], image: 'Cards/' + names[i] + suits[k] + '.png' });
 	}	
 }
-
-/*for (let j = 0; j < 52; j++) {
-  numbers.push(j);
-}
-*/
-// вывод всех карт
-/*for (let x = 0; x < 52; x++) {
-  app.cards.push({ suit: suits[x], name: names[x], image: images[x], });
-}*/
-
 
 // случайные 9 карт по паре в перемешку
 let rands = [];
@@ -111,6 +111,7 @@ function removeCards(index1, index2) {
   openCards = [];  
   console.log(countCloseCard());     
   if (countCloseCard() == 0) {
+    app.show = false;
     finish.show = true;
   }
 }
@@ -135,4 +136,5 @@ function countCloseCard() {
   return f;
 }
 
-setTimeout(hidden, 5000);
+// todo не кликабельные при hidden
+

@@ -3,36 +3,38 @@
 <head>
   <title>Game</title>
   <meta charset="utf-8">
-  <style type="text/css">
-  	#app {
-      margin: 0 auto;
-  		display: flex;
-  		flex-wrap: wrap;
-  		width: 600px;
-  	}
-  	img {
-  		max-height: 100px;
-  	}
-    div {
-      max-height: 100px;
-      width: 80px;
-      padding: 5px;
-    }
-  </style>
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="app">
-  <!--div v-for="card in cards"  v-bind:src="card.image" -->
-  <div v-for="(card, index) in cards" class="card">
-	 <img v-on:click.self="open(index, card.number)" v-bind:src="card.image">
+<div class="container">
+  <div v-if="show" id="start">
+    <img src="Design/assets/StartGame@2x.png">
+    <h1>Memory Game</h1>
+    <button v-on:click="startGame">Начать игру</button>
+  </div>
+  <div v-if="show" id="app">
+    <div class="menu">      
+      <div class="anew">
+        <a href="#">Начать заново</a>
+      </div>
+      <div class="points">
+        Очки: {{ points }}
+      </div>
+    </div>
+    <div class="game">
+      <div v-for="(card, index) in cards" class="card">
+    	 <img v-on:click.self="open(index, card.number)" v-bind:src="card.image">
+      </div>
+    </div>
   </div>
 
-</div>
-<div id="points">
-  {{ points }}
-</div>
-<div id="finish">
-  <p v-if="show">finish</p>
+  <div v-if="show" id="finish">
+    <img src="Design/assets/Group 2@2x.png">
+    <p>Поздравляем!<br>
+    Ваш итоговый счёт: {{ app.points }} </p>
+    <button>Ещё раз</button>
+  </div>
 </div>
 
 
