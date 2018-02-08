@@ -23,7 +23,7 @@ var app = new Vue({
   	open: function (index, num) { 
     console.log(openCards); 
       if (openCards.length < 2) {  
-        this.cards[index].image = images[num]; // открываем карту
+        this.cards[index].image = deck[num].image; // открываем карту
         openCards.push(index); // индекс в открытые карты   
         if (openCards.length == 2) {    
           // защита от двойного клика
@@ -55,9 +55,9 @@ let openCards = []; // индексы открытых карт
 let suits = ['H', 'D', 'S', 'C']; // 4
 let names = ['2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K', 'A']; // 13
 const imgCloseCard = 'Cards/shirt.png'; // рубашка
-const allCards = [];
+const deck = [];
 
-// генерация колоды
+// конструктор карты
 function Card(numb) {
   this.number = numb;
   this.name = names[numb % 13];
@@ -65,11 +65,12 @@ function Card(numb) {
   this.image = 'Cards/' + this.name + this.suit + '.png';
 }
 
+// генерация колоды
 for (let i = 0; i < 52; i++) {
-  allCards.push(new Card(i));
+  deck.push(new Card(i));
 }
 
-// случайные 9 карт без повтора карты
+// случайные номера 9-ти карт без повтора карты
 let rands = [];
 while (rands.length < 9) {
   let rand = Math.round( 0 - 0.5 + Math.random() * (51 - 0 + 1));
@@ -98,7 +99,11 @@ rands.sort(compareRandom);
 
 // добавление случайных карт в игру
 for (z = 0; z < rands.length; z++) {
-  app.cards.push({ suit: suits[rands[z]], name: names[rands[z]], image: images[rands[z]], number: rands[z] });
+  let suit = deck[rands[z]].suit;
+  let name = deck[rands[z]].name;
+  let image = deck[rands[z]].image;
+  let number = rands[z];
+  app.cards.push({ number: number, suit: suit, name: name, image: image });
 }
 
 function removeCards(index1, index2) {
