@@ -43,7 +43,7 @@ var app = new Vue({
 let openCards = []; // индексы открытых карт
 let suits = ['H', 'D', 'S', 'C']; // 4
 let names = ['2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K', 'A']; // 13
-const imgCloseCard = 'Cards/shirt.png'; // рубашка
+const imgCloseCard = 'img/cards/shirt.png'; // рубашка
 const deck = []; // массив колоды
 
 // конструктор карты
@@ -51,7 +51,7 @@ function Card(numb) {
   this.number = numb;
   this.name = names[numb % 13];
   this.suit = suits[parseInt(numb / 13)];
-  this.image = 'Cards/' + this.name + this.suit + '.png';
+  this.image = 'img/cards/' + this.name + this.suit + '.png';
 }
 
 // генерация колоды

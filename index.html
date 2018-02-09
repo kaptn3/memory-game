@@ -4,15 +4,15 @@
   <title>Game</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="normalize.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="container">
 <div id="app" v-bind:class="{ wait: isNoClick }" style="width: 100%; display: flex; justify-content: center; align-items: center;">
   <transition name="fade" mode="out-in">
     <div id="start" v-if="show === 'start'" key="start">
-      <img src="Design/assets/StartGame@2x.png">
+      <img src="img/StartGame@2x.png">
       <h1>Memory Game</h1>
       <button v-on:click="startGame">Начать игру</button>
     </div><!-- end start -->
@@ -34,7 +34,7 @@
     </div><!-- end main -->
 
     <div v-if="show === 'finish'" id="finish" key="finish">
-      <img src="Design/assets/Group 2@2x.png">
+      <img src="img/Group 2@2x.png">
       <p>Поздравляем!<br>
       Ваш итоговый счёт: {{ app.points }} </p>
       <button v-on:click.self="startGame">Ещё раз</button>
@@ -44,7 +44,7 @@
 </div><!-- end container -->
 
 
-<script src="vue.js"></script>
-<script src="script.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
