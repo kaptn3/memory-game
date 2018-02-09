@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:600,700&subset=cyrillic');
 /* Global */
 * {
   box-sizing: border-box;
@@ -6,6 +7,7 @@
 body {
   background-color: #1b692d;
   color: #fff;
+  font-family: 'Open Sans', sans-serif;
 }
 
 a,
@@ -71,7 +73,7 @@ img {
 #finish p {
   text-align: center;
   font-size: 28px;
-  font-family: 'OpenSans-Bold' sans-serif;
+  font-weight: 700;
   letter-spacing: 0.2px;
 }
 
@@ -86,7 +88,7 @@ img {
   opacity: 0.85;
   background: #FFFFFF;
   border-radius: 4px;
-  font-family: OpenSans-Bold;
+  font-weight: 600;
   font-size: 16px;
   color: #1C7430;
   letter-spacing: 0;
@@ -102,7 +104,7 @@ img {
   display: flex;
   justify-content: space-between;
   opacity: 0.8;
-  font-family: OpenSans-Semibold;
+  font-weight: 600;
   font-size: 14px;
   color: #FFFFFF;
   letter-spacing: -0.25px;
