@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="container">
-<div id="app" v-bind:class="{ wait: isNoClick }">
+<div id="app" v-bind:class="{ wait: isNoClick }" style="width: 100%; display: flex; justify-content: center; align-items: center;">
   <transition name="fade" mode="out-in">
     <div id="start" v-if="show === 'start'" key="start">
       <img src="Design/assets/StartGame@2x.png">
