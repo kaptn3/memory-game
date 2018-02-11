@@ -51,7 +51,7 @@ function Card(numb) {
   this.number = numb;
   this.name = names[numb % 13];
   this.suit = suits[parseInt(numb / 13)];
-  this.image = 'https://kaptn.ru/memory-game/img/cards/' + this.name + this.suit + '.png';
+  this.image = 'img/cards/' + this.name + this.suit + '.png';
 }
 
 // генерация колоды
