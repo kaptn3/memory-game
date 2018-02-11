@@ -68,6 +68,8 @@ function play() {
   app.isNoClick = true // защита от клика при показе 
   openCards = [];
 
+  console.log(app.isNoClick);
+
   // случайные номера 9-ти карт без повтора карты
   let rands = [];
   while (rands.length < 9) {

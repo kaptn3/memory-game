@@ -10,7 +10,7 @@
 <body>
  
 <div class="preload"><img src="load.svg"></div> 
-<div id="app" v-bind:class="{ wait: isNoClick }" v-cloak> 
+<div id="app" v-cloak> 
   <div class="container"> 
   <transition name="fade" mode="out-in">
     <div id="start" v-if="show === 'start'" key="start">
@@ -19,7 +19,7 @@
       <button v-on:click="startGame">Начать игру</button>
     </div><!-- end start -->
 
-    <div id="main" v-if="show === 'game'" key="game">
+    <div id="main" v-if="show === 'game'" key="game" v-bind:class="{ wait: isNoClick }">
       <div class="menu">      
         <div class="anew">
           <a href="javascript:void(0)" v-on:click.self="anew">Начать заново</a>
