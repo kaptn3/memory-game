@@ -24,7 +24,12 @@ img {
   border: 0;
   vertical-align: middle;
 }
-
+[v-cloak] {
+  display: none;
+}
+.preload {
+  position: absolute;
+}
 .container {
   margin: 0 auto;
   padding: 0 15px;
@@ -45,6 +50,13 @@ img {
   .container { 
     width:1170px
   }
+}
+
+#app {
+  width: 100%; 
+  justify-content: center; 
+  align-items: center;
+  /*display: none;*/
 }
 
 #start,

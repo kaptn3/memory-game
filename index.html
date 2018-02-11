@@ -8,8 +8,10 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="container">
-<div id="app" v-bind:class="{ wait: isNoClick }" style="width: 100%; display: flex; justify-content: center; align-items: center;">
+<div class="container">  
+<div class="preload"><img src="load.svg"></div> 
+
+<div id="app" v-bind:class="{ wait: isNoClick }" v-cloak> 
   <transition name="fade" mode="out-in">
     <div id="start" v-if="show === 'start'" key="start">
       <img src="img/StartGame@2x.png">
@@ -44,7 +46,7 @@
 </div><!-- end container -->
 
 
-<script src="js/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="js/script.js"></script>
 </body>
 </html>
