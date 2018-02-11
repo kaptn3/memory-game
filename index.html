@@ -8,10 +8,10 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="container">  
+ 
 <div class="preload"><img src="load.svg"></div> 
-
 <div id="app" v-bind:class="{ wait: isNoClick }" v-cloak> 
+  <div class="container"> 
   <transition name="fade" mode="out-in">
     <div id="start" v-if="show === 'start'" key="start">
       <img src="img/StartGame@2x.png">
@@ -41,9 +41,10 @@
       Ваш итоговый счёт: {{ app.points }} </p>
       <button v-on:click.self="startGame">Ещё раз</button>
     </div><!-- end finish -->
+
+</div><!-- end container -->
   </transition>
   </div><!-- end app -->
-</div><!-- end container -->
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
