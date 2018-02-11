@@ -40,6 +40,7 @@ var app = new Vue({
 });
 
 // вспомогательные массивы
+let count = 0;
 let openCards = []; // индексы открытых карт
 let suits = ['H', 'D', 'S', 'C']; // 4
 let names = ['2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K', 'A']; // 13
@@ -61,14 +62,13 @@ for (let i = 0; i < 52; i++) {
 
 // начало игры
 function play() {
+  count = 0;
   app.show = 'game'; // появление игры
   // очистка данных, новая игра
   app.cards = [];
   app.points = 0;
   app.isNoClick = true // защита от клика при показе 
   openCards = [];
-
-  console.log(app.isNoClick);
 
   // случайные номера 9-ти карт без повтора карты
   let rands = [];
@@ -149,4 +149,14 @@ window.onload = function() {
   const load = document.querySelector('.preload');
   load.style.display = 'none';
   app.show = 'start'; // плавное появление
+}
+
+function imgLoad() {
+  let cardImage = document.querySelectorAll('.card-image');
+  count++;
+  if (count === app.cards.length) {
+    for (let i = 0; i < count; i++) {
+      cardImage[i].style.opacity = 1;   
+    } 
+  }
 }

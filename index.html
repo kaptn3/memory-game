@@ -30,7 +30,7 @@
       </div>
       <div class="game">
         <div v-for="(card, index) in cards" class="card" v-bind:class="{ removed: card.remove }">
-          <img v-on:click.self="open(index, card.number)" v-bind:src="card.image">
+          <img class="card-image" v-on:click.self="open(index, card.number)" v-bind:src="card.image" onload="imgLoad()">
         </div>
       </div>
     </div><!-- end main -->

@@ -146,7 +146,9 @@ img {
   opacity: 0;
   z-index: -99;
 }
-.card img {
+.card-image {
+  opacity: 0;
+  transition: .3s opacity ease;
   width: 100%;
   height: auto;
 }
