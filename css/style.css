@@ -148,7 +148,7 @@ img {
 }
 .card-image {
   opacity: 0;
-  transition: .3s opacity ease;
+  transition: .5s opacity ease;
   width: 100%;
   height: auto;
 }

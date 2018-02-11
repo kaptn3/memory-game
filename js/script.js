@@ -28,24 +28,23 @@ var app = new Vue({
       } 
     },
     startGame: function () {
-      play(); 
-      setTimeout(hidden, 5000);  
+      play();   
     },
     anew: function () {
       this.show = 'none'; // плавное исчезновение
       setTimeout(play, 300); // появление    
-      setTimeout(hidden, 5000);
     }
   }
 });
 
 // вспомогательные массивы
-let count = 0;
+let count = 0; // число загруженных карт
 let openCards = []; // индексы открытых карт
 let suits = ['H', 'D', 'S', 'C']; // 4
 let names = ['2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K', 'A']; // 13
 const imgCloseCard = 'img/cards/shirt.png'; // рубашка
 const deck = []; // массив колоды
+const load = document.querySelector('.preload');
 
 // конструктор карты
 function Card(numb) {
@@ -62,6 +61,7 @@ for (let i = 0; i < 52; i++) {
 
 // начало игры
 function play() {
+  load.style.display = 'flex';
   count = 0;
   app.show = 'game'; // появление игры
   // очистка данных, новая игра
@@ -127,9 +127,12 @@ function closeCard(index1, index2) {
 
 // рубашкой вверх 
 function hidden() {
-  for (let m = 0; m < app.cards.length; m++) {
-    app.cards[m].image = imgCloseCard;  
-    app.isNoClick = false; // отключение защиты от клика
+  console.log('go');
+  if (count === app.cards.length) {
+    for (let m = 0; m < app.cards.length; m++) {
+      app.cards[m].image = imgCloseCard;  
+      app.isNoClick = false; // отключение защиты от клика
+    }
   }
 }
 
@@ -144,9 +147,8 @@ function countCloseCard() {
   return (18 - count);
 }
 
-
 window.onload = function() {
-  const load = document.querySelector('.preload');
+  
   load.style.display = 'none';
   app.show = 'start'; // плавное появление
 }
@@ -156,7 +158,9 @@ function imgLoad() {
   count++;
   if (count === app.cards.length) {
     for (let i = 0; i < count; i++) {
+      document.querySelector('.preload').style.display = 'none';
       cardImage[i].style.opacity = 1;   
     } 
+    setTimeout(hidden, 5500); // после загрузки карт запускается игра, + 500ms из-за анимации
   }
 }
