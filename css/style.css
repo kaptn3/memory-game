@@ -178,6 +178,11 @@ img {
     max-width: 800px;
   }
 }
+.noscript {
+  width: 100%;
+  text-align: center;
+  display: block;
+}
 
 /* Transition */ 
 .fade-enter-active,
